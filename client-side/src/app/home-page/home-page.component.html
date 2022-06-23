@@ -6,6 +6,19 @@
     </button>
     <span>{{this.usernameOutput}}</span>
     <span class="example-spacer"></span>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>add_circle_outline</mat-icon>
+      Gérer les cours
+    </button>
+    <button mat-menu-item>
+      <mat-icon>note_add</mat-icon>
+      Gérer les étudiants
+    </button>
+  </mat-menu>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"
         routerLink="/login">
         <mat-icon>logout</mat-icon>

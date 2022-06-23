@@ -5,6 +5,7 @@ import { CommandService } from '../command.service';
 import { Command } from '../model/Command';
 import { Consumer } from '../model/Consumer';
 import { ProductService } from '../product.service';
+import {MatMenuModule} from '@angular/material/menu';
 
 @Component({
   selector: 'app-home-page',

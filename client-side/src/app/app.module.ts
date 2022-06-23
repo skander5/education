@@ -31,6 +31,7 @@ import { DialogAnimationsComponent } from './home-page/card-product/dialog-anima
 import { ContentBodyComponent } from './home-page/content-body/content-body.component';
 import { ListCommandComponent } from './list-command/list-command.component';
 import { ValidateCommandComponent } from './home-page/validate-command/validate-command.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { ValidateCommandComponent } from './home-page/validate-command/validate-
     MatSliderModule,
     MatDialogModule,
     FormsModule,
+    MatMenuModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
