@@ -1,26 +1,69 @@
 <body>
-    <div class="loginStyle">
-        <mat-card class="example-card">
-            <mat-card-title>Login</mat-card-title>
-            <mat-card-content>
-                <form class="example-form">
-                    <mat-icon class="icon">email</mat-icon>
-                    <mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label>Username/Email</mat-label>
-                        <input name="username" #boxUsername type="text" matInput placeholder="" required>
-                    </mat-form-field>
-                    <div></div>
-                    <mat-icon class="icon">key</mat-icon>
-                    <mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label>Password</mat-label>
-                        <input name="password" #boxPassword type="password" matInput placeholder="" required>
-                    </mat-form-field>
-                </form>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button (click)="login(boxUsername.value, boxPassword.value)">Login</button>
-            </mat-card-actions>
+<div class="loginStyle">
+  <mat-card class="example-card" *ngIf="!showLogin">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+      <form class="example-form">
+        <mat-icon class="icon">email</mat-icon>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Username/Email</mat-label>
+          <input name="username" #boxUsername type="text" matInput placeholder="" required>
+        </mat-form-field>
+        <div></div>
+        <mat-icon class="icon">key</mat-icon>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input name="password" #boxPassword type="password" matInput placeholder="" required>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="login(boxUsername.value, boxPassword.value)">Se connecter
+      </button>
+      <button mat-raised-button color="primary" (click)="subscription()">Souscrire</button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card class="example-card" *ngIf="showLogin" >
+    <mat-card-title>Créer un compte</mat-card-title>
+    <mat-card-content>
+      <form class="example-form" style="width: 100%">
+        <mat-icon class="icon">person icon</mat-icon>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Nom</mat-label>
+          <input name="username" #boxUsername type="text" matInput placeholder="" required>
+        </mat-form-field>
+        <div></div>
+        <mat-icon class="icon">person_outline</mat-icon>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Username</mat-label>
+          <input name="username" #boxUsername type="text" matInput placeholder="" required>
+        </mat-form-field>
+        <div></div>
+        <mat-icon class="icon">mobile_friendly</mat-icon>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>numéro tel</mat-label>
+          <input name="username" #boxUsername type="text" matInput placeholder="" required>
+        </mat-form-field>
+        <div></div>
+        <mat-icon class="icon">email</mat-icon>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Username/Email</mat-label>
+          <input name="username" #boxUsername type="text" matInput placeholder="" required>
+        </mat-form-field>
+        <div></div>
+        <mat-icon class="icon">key</mat-icon>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input name="password" #boxPassword type="password" matInput placeholder="" required>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="subscription()">Se connecter
+      </button>
+      <button mat-raised-button color="primary" (click)="login(boxUsername.value, boxPassword.value)">Valider</button>
+    </mat-card-actions>
+  </mat-card>
 
-        </mat-card>
-    </div>
+</div>
 </body>

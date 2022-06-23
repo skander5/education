@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   consumer !: Consumer;
   constructor(private consumerService: ConsumerService, private router: Router) { }
+  showLogin : boolean = false ;
 
   ngOnInit(): void { }
 
@@ -24,6 +25,10 @@ export class LoginComponent implements OnInit {
         this.router.navigate([`home/${this.consumer.firstName}/listProduct`])
       }
     );
+  }
+
+  subscription(){
+    this.showLogin = !this.showLogin ;
   }
 
 }
