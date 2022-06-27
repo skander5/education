@@ -9,6 +9,7 @@ import com.ec.springApp.entites.Subscriber;
 
 public interface ISubscriberRepository extends JpaRepository<Subscriber, Long>{
 	
-	//@Query("SELECT consumer FROM Consumer consumer WHERE consumer.username = :username AND consumer.password = :password")
-	//public Subscriber findConsumerbyUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+	@Query("SELECT subscriber FROM Subscriber subscriber WHERE subscriber.username = :username AND subscriber.password = :password")
+	public Subscriber findSubscriberbyUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+	
 }

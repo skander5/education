@@ -25,7 +25,7 @@ export class ConsumerService {
 
   public login(username: string, password: string): Observable<Consumer> {
 
-    let _return = this.http.post<Consumer>(`${this.apiUrl}/getConsumer`, { "username": username, "password": password }, this.optionsRegister);
+    let _return = this.http.post<Consumer>(`${this.apiUrl}/getSubscriber`, { "username": username, "password": password }, this.optionsRegister);
     return _return;
 
   }

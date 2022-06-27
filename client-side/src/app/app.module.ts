@@ -32,6 +32,8 @@ import { ContentBodyComponent } from './home-page/content-body/content-body.comp
 import { ListCommandComponent } from './list-command/list-command.component';
 import { ValidateCommandComponent } from './home-page/validate-command/validate-command.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {DialogReservation, ListCourseComponent} from './list-course/list-course.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import {MatMenuModule} from '@angular/material/menu';
     DialogAnimationsComponent,
     ContentBodyComponent,
     ListCommandComponent,
-    ValidateCommandComponent
+    ValidateCommandComponent,
+    ListCourseComponent,
+    DialogReservation
   ],
   imports: [
     BrowserModule,
@@ -65,16 +69,21 @@ import {MatMenuModule} from '@angular/material/menu';
     HttpClientModule,
     MatSliderModule,
     MatDialogModule,
+    MatSelectModule,
     FormsModule,
     MatMenuModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
+      { path: 'home', component: HomePageComponent ,children : [
+          { path: 'listCourse', component: ListCourseComponent },
+        ]},
       { path: 'home/:username', component: HomePageComponent , children : [
           { path: 'listProduct', component: CardProductComponent },
           { path: 'listCommand', component: PurchaseDemandComponent },
           { path: 'listMyDemand', component: DemandComponent },
           { path: 'validateCommand', component: ValidateCommandComponent },
+          { path: 'listCourse', component: ListCourseComponent },
           { path: 'listOrder', component: ListCommandComponent }
 
         ] }

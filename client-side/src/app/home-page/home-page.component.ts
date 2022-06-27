@@ -23,6 +23,7 @@ export class HomePageComponent implements OnInit {
   itemOfMyDemand: string = "itemOfMyDemand";
   itemOfAdminPurchaseDemand: string = "itemOfAdminPurchaseDemand";
   consumer !: Consumer;
+  navBarColor :string = "navBarColorSimpleUser" ;
 
   addNewItem(value: string) {
     this.newItemEvent.emit(value);
@@ -34,13 +35,21 @@ export class HomePageComponent implements OnInit {
 
   constructor(private routerService: ActivatedRoute,private router : Router) { }
 
+  logout () {
+    this.router.navigateByUrl('/login');
+    localStorage.clear();
+  }
 
   btnClick (path:string) {
      this.router.navigateByUrl('home/'+this.usernameOutput+'/'+path);
   }
 
   ngOnInit(): void {
-    this.consumer = JSON.parse(localStorage.getItem("consumer") || "");
+    const logedUser = localStorage.getItem("consumer");
+    if(logedUser) {
+      this.consumer = JSON.parse(localStorage.getItem("consumer") || "");
+      this.navBarColor = "navBarColorSimpleUser";
+    }
     this.usernameOutput = this.routerService.snapshot.params['username'];
   }
 

@@ -11,23 +11,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ec.springApp.entites.Course;
 import com.ec.springApp.entites.Subscriber;
-import com.ec.springApp.service.SubscriberService;
+import com.ec.springApp.service.CourseService;
 
 @CrossOrigin
 @RestController
-public class SubscriberController {
-
+public class CourseController {
+	
 	@Autowired
-	private SubscriberService subscriberService;
-
-	@PostMapping("addSubscriber")
-	public void addCommand(@RequestBody Subscriber subscriber) {
-		this.subscriberService.addSubscriber(subscriber);
+	private CourseService courseService;
+	
+	@PostMapping("addCourse")
+	public void addCommand(@RequestBody Course course) {
+		this.courseService.addCourse(course);
 	}
 	
-	@PostMapping("getSubscriber")
-	public Subscriber findConsumerByUsernameAndPassword(@RequestBody Subscriber consumer) {
-		return this.subscriberService.findConsumerbyUsernameAndPassword(consumer.getUsername(), consumer.getPassword());
+	@GetMapping("findAllCourses")
+	public List<Course> findAll(){
+		return this.courseService.findAllCourses();
+	}
+	
+	@PostMapping("reserver")
+	public void reserverCourse(@RequestBody Course course) {
+		this.courseService.addCourse(course);
 	}
 
 }

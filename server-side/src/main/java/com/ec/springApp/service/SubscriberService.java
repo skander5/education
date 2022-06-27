@@ -18,6 +18,10 @@ public class SubscriberService {
 	public Subscriber addSubscriber(Subscriber subscriber) {
 		return this.subscriberRepository.save(subscriber);
 	}
+	
+	public Subscriber findConsumerbyUsernameAndPassword(String username, String password) {
+		return this.subscriberRepository.findSubscriberbyUsernameAndPassword(username, password);
+	}
 
 
 }

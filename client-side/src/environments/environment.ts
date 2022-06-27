@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apibaseUrl : 'http://localhost:8081/Ecommerce/servlet'
+  apibaseUrl : 'http://localhost:8081/formation/servlet'
 };
 
 /*
