@@ -61,13 +61,13 @@ export class ListCourseComponent implements OnInit {
     this.dialog.open(DialogReservation);
   }
 
-  reserverCourse(course:Course){
+  async reserverCourse(course:Course){
     this.subscribers.push(this.subscriber);
     console.log(this.subscriber);
 
     course.subscriberList = this.subscribers;
     console.log(this.subscribers);
-    this.courseService.reserverCours(course).toPromise();
+    await this.courseService.reserverCours(course).toPromise();
   }
 
 

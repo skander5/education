@@ -1,6 +1,8 @@
 package com.ec.springApp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -46,6 +48,9 @@ public class ECommerceApplication implements CommandLineRunner {
 		cours.setTitle("Physique");
 		cours.setBeginDate(new Date());
 		cours.setDuree(3);
+		//List<Subscriber> sblist = new ArrayList<>();
+		//sblist.add(subscriber);
+		//course.setSubscriberList(sblist);
 		courseService.addCourse(cours);
 		courseService.addCourse(course);
 

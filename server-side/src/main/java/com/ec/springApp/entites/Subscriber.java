@@ -39,8 +39,6 @@ public class Subscriber implements Serializable {
 
 	private String role;
 	
-	@ManyToMany
-	private List<Course> coursList ;
 
 	public Long getId() {
 		return id;
@@ -105,15 +103,7 @@ public class Subscriber implements Serializable {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
-	public List<Course> getCoursList() {
-		return coursList;
-	}
-
-	public void setCoursList(List<Course> coursList) {
-		this.coursList = coursList;
-	}
-
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
