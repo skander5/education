@@ -34,6 +34,8 @@ import { ValidateCommandComponent } from './home-page/validate-command/validate-
 import {MatMenuModule} from '@angular/material/menu';
 import {DialogReservation, ListCourseComponent} from './list-course/list-course.component';
 import {MatSelectModule} from '@angular/material/select';
+import { ValidatedCoursesComponent } from './validated-courses/validated-courses.component';
+import { ValidateReservationComponent } from './validate-reservation/validate-reservation.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import {MatSelectModule} from '@angular/material/select';
     ListCommandComponent,
     ValidateCommandComponent,
     ListCourseComponent,
-    DialogReservation
+    DialogReservation,
+    ValidatedCoursesComponent,
+    ValidateReservationComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +88,7 @@ import {MatSelectModule} from '@angular/material/select';
           { path: 'listMyDemand', component: DemandComponent },
           { path: 'validateCommand', component: ValidateCommandComponent },
           { path: 'listCourse', component: ListCourseComponent },
+          { path: 'myCourses', component: ValidatedCoursesComponent },
           { path: 'listOrder', component: ListCommandComponent }
 
         ] }

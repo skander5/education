@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -37,8 +38,8 @@ public class Course implements Serializable {
 	
 	private Integer duree;
 	
-	@ManyToMany
-	private List<Subscriber> subscriberList;
+	@OneToMany
+	private List<SubscriberCourses> listSubscriber ;
 	
 	@ManyToOne
 	private Category category;
@@ -65,14 +66,6 @@ public class Course implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public List<Subscriber> getSubscriberList() {
-		return subscriberList;
-	}
-
-	public void setSubscriberList(List<Subscriber> subscriberList) {
-		this.subscriberList = subscriberList;
 	}
 
 	public Category getCategory() {
@@ -110,7 +103,14 @@ public class Course implements Serializable {
 	public void setDuree(Integer duree) {
 		this.duree = duree;
 	}
-	
+
+	public List<SubscriberCourses> getListSubscriber() {
+		return listSubscriber;
+	}
+
+	public void setListSubscriber(List<SubscriberCourses> listSubscriber) {
+		this.listSubscriber = listSubscriber;
+	}
 	
 	
 	

@@ -5,6 +5,10 @@ import {Course} from "../model/Course";
 import {DialogAnimationsComponent} from "../home-page/card-product/dialog-animations/dialog-animations.component";
 import {Consumer} from "../model/Consumer";
 import {Subscriber} from "../model/Subscriber";
+import {SubscriberCourses} from "../model/SubscriberCourses";
+import {Router} from "@angular/router";
+import {Category} from "../model/Category";
+import {filter} from "rxjs/operators";
 
 @Component({
   selector: 'app-list-course',
@@ -14,9 +18,12 @@ import {Subscriber} from "../model/Subscriber";
 export class ListCourseComponent implements OnInit {
 
   courseData!:Course[] ;
+  courseDataSaved!:Course[] ;
   p: any;
   subscriber !: Subscriber;
   subscribers:Subscriber[] = [] ;
+  categoryCourse!:Category[] ;
+  selectedCategory !:Category ;
 
   myArray = [
     "widget-49-date-primary",
@@ -27,21 +34,47 @@ export class ListCourseComponent implements OnInit {
 
   randomItem = this.myArray[Math.floor(Math.random()*this.myArray.length)];
 
-  showDateColor() : string {
-    return this.myArray[Math.floor(Math.random()*this.myArray.length)];
+   showDateColor() : string {
+    return this.myArray[1];
   }
 
-  constructor(public dialog: MatDialog,public courseService:CourseServiceService ) { }
+  constructor(public dialog: MatDialog,public courseService:CourseServiceService,private router : Router) { }
 
-  getCoursesData() {
+  async getCoursesData() {
+    return new Promise (resolve => {
     this.courseService.findAllCourses().subscribe(
       (data) => {
         this.courseData = data;
+        this.courseDataSaved = data ;
+      }
+    );
+  })
+   }
+ // const example = this.courseService.findAllCourses().pipe(filter(e => e.filter(c=>c.title === '')));
+
+  async getCoursesFiltred() {
+    return new Promise (resolve => {
+      this.courseService.findAllCourses().subscribe(
+        (data) => {
+          this.courseData = data;
+          this.courseData.filter(e => {
+            return e.category.id === this.selectedCategory.id;
+          });
+        }
+      );
+    })
+  }
+
+  findAllCategory(){
+    this.courseService.findAllCategory().subscribe(
+      (data) => {
+        this.categoryCourse = data;
       }
     );
   }
 
   ngOnInit(): void {
+    this.findAllCategory();
     this.getCoursesData();
     const logedUser = localStorage.getItem("consumer");
     if(logedUser) {
@@ -56,18 +89,30 @@ export class ListCourseComponent implements OnInit {
     return monthNames[Number(numMonth)-1] ;
   };
 
+  async changeCategory() {
+    this.courseData = this.courseDataSaved ;
+    if(this.selectedCategory)
+    this.courseData = this.courseData.filter(e => {
+      return e.category.id === this.selectedCategory.id;
+    });
+  }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(DialogReservation);
   }
 
   async reserverCourse(course:Course){
+    this.subscribers = [] ;
     this.subscribers.push(this.subscriber);
     console.log(this.subscriber);
 
     course.subscriberList = this.subscribers;
-    console.log(this.subscribers);
-    await this.courseService.reserverCours(course).toPromise();
+    const subscriberCourses = {} as SubscriberCourses;
+    subscriberCourses.course = course ;
+    subscriberCourses.subscriber = this.subscriber;
+    subscriberCourses.status = "En attente" ;
+    console.log(subscriberCourses);
+    await this.courseService.reserverCours(subscriberCourses).toPromise();
   }
 
 

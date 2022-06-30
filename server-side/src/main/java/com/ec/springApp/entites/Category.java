@@ -24,6 +24,34 @@ public class Category {
 	
 	@OneToMany
 	private List<Course> coursList ;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public List<Course> getCoursList() {
+		return coursList;
+	}
+
+	public void setCoursList(List<Course> coursList) {
+		this.coursList = coursList;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 	
 

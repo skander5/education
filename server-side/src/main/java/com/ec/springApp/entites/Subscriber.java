@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Subscriber implements Serializable {
@@ -38,6 +39,9 @@ public class Subscriber implements Serializable {
 	private String password;
 
 	private String role;
+	
+	@OneToMany
+	private List<SubscriberCourses> listCourses ;
 	
 
 	public Long getId() {
@@ -107,6 +111,15 @@ public class Subscriber implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public List<SubscriberCourses> getListCourses() {
+		return listCourses;
+	}
+
+	public void setListCourses(List<SubscriberCourses> listCourses) {
+		this.listCourses = listCourses;
+	}
+
 
 	
 
