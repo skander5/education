@@ -2,6 +2,7 @@ package com.ec.springApp.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,10 @@ public class CourseService {
 		return this.subscriberCourseRepository.findAll();
 	}
 	
+	public SubscriberCourses addCourseSubscriber(SubscriberCourses subscriberCourses) {
+		return this.subscriberCourseRepository.save(subscriberCourses);
+	}
+	
 	public SubscriberCourses reserverCourse(SubscriberCourses subscriberCourses) {
 		List<SubscriberCourses> listAllSubscriberCourses = this.subscriberCourseRepository.findAll();
 		List<Subscriber> listAllSubscriber = new ArrayList<>();
@@ -58,7 +63,8 @@ public class CourseService {
 	
 	public List<Course> findAllCoursesBySubscriber(Subscriber subscriber){
 		List<SubscriberCourses> listAllSubscriberCourses = this.subscriberCourseRepository.findAll();
-		List<SubscriberCourses> subscriberCoursesFiltred = listAllSubscriberCourses.stream().filter(e->e.getSubscriber().getId() == subscriber.getId()).toList();
+		List<SubscriberCourses> subscriberCoursesFiltred = listAllSubscriberCourses.stream().filter(e->e.getSubscriber().getId() == subscriber.getId()
+				&& e.getStatus().equals("Valider")).collect(Collectors.toList());
 		List<Course> coursesBySubscriber = new ArrayList<Course>() ;
 		subscriberCoursesFiltred.stream().forEach(e-> {
 			Course course = this.courseRepository.findById(e.getCourse().getId()).get();

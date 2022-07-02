@@ -38,6 +38,8 @@ public class Course implements Serializable {
 	
 	private Integer duree;
 	
+	private Integer maxSubscriber ;
+	
 	@OneToMany
 	private List<SubscriberCourses> listSubscriber ;
 	
@@ -110,6 +112,14 @@ public class Course implements Serializable {
 
 	public void setListSubscriber(List<SubscriberCourses> listSubscriber) {
 		this.listSubscriber = listSubscriber;
+	}
+
+	public Integer getMaxSubscriber() {
+		return maxSubscriber;
+	}
+
+	public void setMaxSubscriber(Integer maxSubscriber) {
+		this.maxSubscriber = maxSubscriber;
 	}
 	
 	

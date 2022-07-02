@@ -9,6 +9,7 @@ export interface Course {
   beginDate: Date;
   endDate: Date;
   duree: number;
+  maxSubscriber: number;
   subscriberList: Subscriber[];
   category: Category;
 }

@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {Course} from "../model/Course";
 import {Subscriber} from "../model/Subscriber";
 import {Category} from "../model/Category";
+import {SubscriberCourses} from "../model/SubscriberCourses";
 
 @Component({
   selector: 'app-validated-courses',
@@ -17,6 +18,8 @@ export class ValidatedCoursesComponent implements OnInit {
   p: any;
   subscriber !: Subscriber;
   categoryCourse!:Category[] ;
+  listAllReservation : SubscriberCourses[] = []  ;
+  listAllReservationForLabel : SubscriberCourses[] = []  ;
 
   constructor(public courseService:CourseServiceService,private router : Router) { }
 
@@ -30,7 +33,7 @@ export class ValidatedCoursesComponent implements OnInit {
   randomItem = this.myArray[Math.floor(Math.random()*this.myArray.length)];
 
   showDateColor() : string {
-    return this.myArray[Math.floor(Math.random()*this.myArray.length)];
+    return this.myArray[3];
   }
 
   getCoursesData() {
@@ -47,6 +50,8 @@ export class ValidatedCoursesComponent implements OnInit {
       this.subscriber = JSON.parse(localStorage.getItem("consumer") || "");
     }
     this.getCoursesData();
+    this.courseService.findAllReservation().subscribe(data => {this.listAllReservation = data;this.listAllReservationForLabel = data});
+
   }
 
   getMonth (numMonth:any):string {
@@ -55,5 +60,22 @@ export class ValidatedCoursesComponent implements OnInit {
     ];
     return monthNames[Number(numMonth)-1] ;
   };
+
+
+  findPersentSubscriber(course:Course) : string{
+    let listReservationFiltred : SubscriberCourses[] = []  ;
+    listReservationFiltred = this.listAllReservation.filter(e=>{
+      return e.course.id == course.id
+    });
+    return "width : " + listReservationFiltred.length * 100 / course.maxSubscriber +"%" ;
+  }
+
+  findNumberSubscribed(course:Course):string {
+    let listReservationFiltredForLabel : SubscriberCourses[] = []  ;
+    listReservationFiltredForLabel = this.listAllReservationForLabel.filter(e=>{
+      return e.course.id == course.id
+    });
+    return  listReservationFiltredForLabel.length + " étuduiant sur " + course.maxSubscriber;
+  }
 
 }

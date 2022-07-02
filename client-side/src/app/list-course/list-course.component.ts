@@ -24,6 +24,8 @@ export class ListCourseComponent implements OnInit {
   subscribers:Subscriber[] = [] ;
   categoryCourse!:Category[] ;
   selectedCategory !:Category ;
+  listAllReservation : SubscriberCourses[] = []  ;
+  listAllReservationForLabel : SubscriberCourses[] = []  ;
 
   myArray = [
     "widget-49-date-primary",
@@ -35,7 +37,7 @@ export class ListCourseComponent implements OnInit {
   randomItem = this.myArray[Math.floor(Math.random()*this.myArray.length)];
 
    showDateColor() : string {
-    return this.myArray[1];
+    return this.myArray[2];
   }
 
   constructor(public dialog: MatDialog,public courseService:CourseServiceService,private router : Router) { }
@@ -76,10 +78,27 @@ export class ListCourseComponent implements OnInit {
   ngOnInit(): void {
     this.findAllCategory();
     this.getCoursesData();
+    this.courseService.findAllReservation().subscribe(data => {this.listAllReservation = data;this.listAllReservationForLabel = data});
     const logedUser = localStorage.getItem("consumer");
     if(logedUser) {
       this.subscriber = JSON.parse(localStorage.getItem("consumer") || "");
     }
+  }
+
+  findPersentSubscriber(course:Course) : string{
+    let listReservationFiltred : SubscriberCourses[] = []  ;
+    listReservationFiltred = this.listAllReservation.filter(e=>{
+       return e.course.id == course.id
+     });
+    return "width : " + listReservationFiltred.length * 100 / course.maxSubscriber +"%" ;
+  }
+
+  findNumberSubscribed(course:Course):string {
+    let listReservationFiltredForLabel : SubscriberCourses[] = []  ;
+    listReservationFiltredForLabel = this.listAllReservationForLabel.filter(e=>{
+      return e.course.id == course.id
+    });
+     return  listReservationFiltredForLabel.length + " étuduiant sur " + course.maxSubscriber;
   }
 
   getMonth (numMonth:any):string {

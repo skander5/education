@@ -47,6 +47,11 @@ public class CourseController {
 		this.courseService.reserverCourse(subscriberCourses);
 	}
 	
+	@PostMapping("addCourseSubscriber")
+	public void addCourseSubscriber(@RequestBody SubscriberCourses subscriberCourses) {
+		this.courseService.addCourseSubscriber(subscriberCourses);
+	} 
+	
 	@GetMapping("findAllReservation")
 	public List<SubscriberCourses> findAllReservation(){
 		return this.courseService.findAllReservation();

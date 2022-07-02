@@ -14,7 +14,7 @@
       <div class="card card-margin">
         <div class="card-header no-border">
           <h5 class="card-title">{{data.title}}</h5>
-          <div class="badge ml-auto d-flex justify-content-end"><span>Science</span> </div>
+          <div class="badge ml-auto d-flex justify-content-end"><span>{{data?.category?.title}}</span> </div>
         </div>
         <div class="card-body pt-0">
           <div class="widget-49">
@@ -24,7 +24,7 @@
                 <span class="widget-49-date-month">{{getMonth(data.beginDate | date : 'MM')}}</span>
               </div>
               <div class="widget-49-meeting-info">
-                <span class="widget-49-pro-title">Assurée par Mr ahmed</span>
+                <span class="widget-49-pro-title">Assuré par Mr ahmed</span>
                 <span class="widget-49-meeting-time">{{data.duree}} Hrs</span>
               </div>
             </div>
@@ -32,9 +32,9 @@
               <li class="widget-49-meeting-item"><span>Du Lundi jusqu'à jeudi à 12h:30mn</span></li>
             </ol>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar" role="progressbar" [style]="findPersentSubscriber(data)" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <div class="mt-3"> <span class="text1">30 étudiants<span class="text2"> sur 100</span></span> </div>
+            <div class="mt-3"> <span class="text1">{{findNumberSubscribed(data)}}</span> </div>
           </div>
         </div>
       </div>

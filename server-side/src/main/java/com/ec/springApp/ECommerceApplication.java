@@ -66,12 +66,14 @@ public class ECommerceApplication implements CommandLineRunner {
 		course.setTitle("Math");
 		course.setBeginDate(new Date());
 		course.setDuree(3);
+		course.setMaxSubscriber(20);
 		course.setCategory(languageCategory);
 		Course cours = new Course();
 		cours.setDescription("Stats");
 		cours.setTitle("Physique");
 		cours.setBeginDate(new Date());
 		cours.setDuree(3);
+		cours.setMaxSubscriber(40);
 		cours.setCategory(scienceCategory);
 		//List<Subscriber> sblist = new ArrayList<>();
 		//sblist.add(subscriber);

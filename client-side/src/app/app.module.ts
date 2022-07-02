@@ -36,6 +36,11 @@ import {DialogReservation, ListCourseComponent} from './list-course/list-course.
 import {MatSelectModule} from '@angular/material/select';
 import { ValidatedCoursesComponent } from './validated-courses/validated-courses.component';
 import { ValidateReservationComponent } from './validate-reservation/validate-reservation.component';
+import {
+  ConfirmReservationComponent,
+  DialogConfirmReservation
+} from './confirm-reservation/confirm-reservation.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -52,7 +57,9 @@ import { ValidateReservationComponent } from './validate-reservation/validate-re
     ListCourseComponent,
     DialogReservation,
     ValidatedCoursesComponent,
-    ValidateReservationComponent
+    ValidateReservationComponent,
+    DialogConfirmReservation,
+    ConfirmReservationComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +82,7 @@ import { ValidateReservationComponent } from './validate-reservation/validate-re
     MatDialogModule,
     MatSelectModule,
     FormsModule,
+    MatTableModule,
     MatMenuModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -86,7 +94,7 @@ import { ValidateReservationComponent } from './validate-reservation/validate-re
           { path: 'listProduct', component: CardProductComponent },
           { path: 'listCommand', component: PurchaseDemandComponent },
           { path: 'listMyDemand', component: DemandComponent },
-          { path: 'validateCommand', component: ValidateCommandComponent },
+          { path: 'listReservation', component: ConfirmReservationComponent },
           { path: 'listCourse', component: ListCourseComponent },
           { path: 'myCourses', component: ValidatedCoursesComponent },
           { path: 'listOrder', component: ListCommandComponent }

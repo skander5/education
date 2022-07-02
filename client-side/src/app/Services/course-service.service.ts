@@ -22,6 +22,12 @@ export class CourseServiceService {
     this.apiUrl = environment.apibaseUrl;
   }
 
+  public addUpdateCourseSubscriber(course:SubscriberCourses): Observable<SubscriberCourses> {
+    const headers = new HttpHeaders();
+    const body = JSON.stringify(course);
+    return this.http.post<SubscriberCourses>(`${this.apiUrl}/addCourseSubscriber`, body ,this.optionsRegister);
+  }
+
   public findAllCourses(): Observable<Course[]> {
     const headers = new HttpHeaders();
     return this.http.get<Course[]>(`${this.apiUrl}/findAllCourses`, this.optionsRegister);
@@ -43,8 +49,8 @@ export class CourseServiceService {
     return this.http.post<Course>(`${this.apiUrl}/reserver`, body,this.optionsRegister);
   }
 
-  public findAllReservation() : Observable<SubscriberCourses> {
-    return this.http.get<SubscriberCourses>(`${this.apiUrl}/findAllReservation`, this.optionsRegister);
+  public findAllReservation() : Observable<SubscriberCourses[]> {
+    return this.http.get<SubscriberCourses[]>(`${this.apiUrl}/findAllReservation`, this.optionsRegister);
   }
 
 }

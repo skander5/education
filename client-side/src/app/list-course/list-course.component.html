@@ -23,7 +23,7 @@
                 <span class="widget-49-date-month">{{getMonth(data.beginDate | date : 'MM')}}</span>
               </div>
               <div class="widget-49-meeting-info">
-                <span class="widget-49-pro-title">Assurée par Mr ahmed</span>
+                <span class="widget-49-pro-title">Assuré par Mr ahmed</span>
                 <span class="widget-49-meeting-time">{{data.duree}} Hrs</span>
               </div>
             </div>
@@ -31,9 +31,9 @@
               <li class="widget-49-meeting-item"><span>Du Lundi jusqu'à jeudi à 12h:30mn</span></li>
             </ol>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar" role="progressbar"  [style]="findPersentSubscriber(data)" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <div class="mt-3"> <span class="text1">30 étudiants<span class="text2"> sur 100</span></span> </div>
+            <div class="mt-3"> <span class="text1">{{findNumberSubscribed(data)}}</span> </div>
             <div class="widget-49-meeting-action">
               <a *ngIf="subscriber" (click)="reserverCourse(data);openDialog('0ms', '0ms')" class="btn btn-sm btn-flash-border-primary">Réserver</a>
               <a *ngIf="!subscriber" href="/login" class="btn btn-sm btn-flash-border-primary">Réserver</a>
